@@ -2,9 +2,9 @@ import mysql.connector
 from flask import Flask
 from flask_restful import Api, Resource
 
-ssp_db = mysql.connector.connect(host="localhost", user="root", password="", database="ssp_db")
+ssp_data = mysql.connector.connect(host="localhost", user="root", password="", database="ssp_data")
 
-my_cursor = ssp_db.cursor()
+my_cursor = ssp_data.cursor()
 my_cursor.execute("SELECT * FROM stats")
 
 if (len(my_cursor.fetchall()) < 2):
@@ -12,7 +12,7 @@ if (len(my_cursor.fetchall()) < 2):
     sql_computer_first = f'INSERT INTO stats VALUES ("computer", 0, 0, 0, 0, 0, 0)'
     my_cursor.execute(sql_player_first)
     my_cursor.execute(sql_computer_first)
-    ssp_db.commit()
+    ssp_data.commit()
 
 
 def daten_speichern(symbol_anzhal_spieler, symbol_anzahl_computer, spieler_gwinnt, computer_gwinnt, gewonnen,
@@ -26,7 +26,7 @@ def daten_speichern(symbol_anzhal_spieler, symbol_anzahl_computer, spieler_gwinn
     my_cursor.execute(sql_spieler)
     my_cursor.execute(sql_computer)
 
-    ssp_db.commit()
+    ssp_data.commit()
 
 
 def data_from_db(gewonnen, gewonnen_computer, spieler_gewinnt, computer_gewinnt):
@@ -53,7 +53,7 @@ def reset_db():
     sql_computer_clear = f'UPDATE stats SET stein = 0, spock = 0, papier = 0, echse = 0, schere = 0,wins = 0 WHERE name = "computer"'
     my_cursor.execute(sql_player_clear)
     my_cursor.execute(sql_computer_clear)
-    ssp_db.commit()
+    ssp_data.commit()
 
 
 def show_all_data():

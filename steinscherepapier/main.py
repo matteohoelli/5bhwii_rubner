@@ -38,7 +38,7 @@ def spiel():
         if (runden_zaehler > 5):
             spielmodus = input(
                 "\nHaben dir die Runden gefallen und du willst nochmal spielen? Wenn ja, soll die nächste Runde Leicht(E) oder Hart(H) sein?: ")
-            ausgewaehlt = input("\nNimmst du Schere, Stein, Papier, Spock oder Echse? : ")
+        ausgewaehlt = input("\nNimmst du Schere, Stein, Papier, Spock oder Echse? : ")
         if ausgewaehlt not in symbol_dictionary:
             print("Falsche Eingabe, nochmal eingeben!")
             continue
